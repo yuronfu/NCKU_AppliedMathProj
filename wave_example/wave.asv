@@ -1,0 +1,61 @@
+% A code to solve a wave equation
+
+clear;
+close all;
+
+
+Ln=1;
+Kn=1;
+Mn=1;
+T=10;
+% N-mass
+N=100
+m=Mn/N;
+h=Ln/N;
+k=Kn*N;
+
+
+w02=k/m;
+
+tspan = [0 T];
+x(1:N)=h:h:1;
+y0(2*N,1)=0;
+y0(1:N,1)=sin(pi*x');
+%h/N:h/N:h;
+
+
+% Solve the problem using ode45
+options=odeset('RelTol',1e-6);
+[tout,yout]=ode45(@(t,y) mywave(t,y,w02,N) , tspan,y0,options);
+
+ figure(1)
+% set(axes,'fontsize',18)
+% hold on
+
+ yz=zeros(N);
+ x_loc=x+yout(1,1:N);
+ 
+ wave_handle=plot(x_loc(1,:),yz,'.');
+ axis([0, 1+2*h, -1, 1]); 
+ xlabel('x'); ylabel('u(x,t)')
+
+ figure(2)
+ set(axes,'fontsize',18)
+% hold on
+ yz=zeros(N);
+ x_loc=x+yout(1,1:N);
+ 
+ wave2_handle=plot(x(1,:)',yout(1:N,1),'.');
+ axis([0, 1, -1, 1]); 
+ xlabel('x'); ylabel('u(x,t)')
+ 
+ 
+ 
+pause(1)
+for i=1:length(tout)
+    x_loc=x+yout(i,1:N);
+      set(wave_handle,'XData',x_loc(1,:)); 
+      set(wave_handle2,'YData',yout(1:N,1)); 
+ drawnow
+end
+

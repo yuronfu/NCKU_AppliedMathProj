@@ -1,0 +1,163 @@
+\documentclass[11pt]{beamer}
+
+\mode<article> % only for the article version
+{
+  \usepackage{fullpage}
+  \usepackage{hyperref}
+}
+\usepackage{multimedia}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{amsmath,amssymb}
+\usepackage[latin1]{inputenc}
+%\usepackage{colortbl}
+\usepackage[english]{babel}
+%\usepackage{fancybox}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+
+\mode<presentation> {
+  \setbeamertemplate{background canvas}[vertical shading][bottom=white!10,top=blue!10]
+
+  %\usetheme{Hannover} %...The third theme
+  %\usetheme{Montpellier} %...The second theme
+  \usetheme[hideothersubsections]{Marburg} %....The first theme
+  \usefonttheme[onlymath]{serif}
+  \usecolortheme{sidebartab}
+  \pgfdeclareimage[height=1.5cm]{logo}{1111021021} \logo{\pgfuseimage{logo}}
+  \pgfdeclareimage[height=6cm]{NCKUSC}{NCKUSC} \logo{\pgfuseimage{NCKUSC}}
+}
+
+%\setbeamercolor{math text}{fg=green!50!black}
+%\setbeamercolor{normal text in math text}{parent=math text}
+
+
+%\usepackage{lmodern}
+%\usepackage[T1]{fontenc}
+
+\usepackage{times}
+
+\setbeamercovered{dynamic}
+
+
+%\useoutertheme{split}
+%\useinnertheme[shadow]{rounded}
+\title{Henon-Heiles 模型研究計劃}
+\subtitle{科學計算導論簡報範例}
+\author{組員A, 組員B,組員C,組員D,組員E}
+
+\institute{Dept. of Math, NCKU, Tainan}
+\date{May 25, 2009}
+%\nodate
+%---- BEGIN NEW COMMANDS
+\newcommand{\vc}[1]{\mbox{\boldmath$#1$\unboldmath}}
+\newcommand{\bmathsf}[1]{\vc{\mathsf{#1}}}
+\newcommand{\intd}{\int_{\mbox{\footnotesize \sf D}}}
+\newcommand{\inti}{\int_{\mbox{\footnotesize\sf I}}}
+\newcommand{\intih}{\int_{\hat{\mbox{\footnotesize\sf I}}}}
+\newcommand{\intbd}{\oint_{\mbox{\footnotesize ${\delta}$\sf D}}}
+\newcommand{\pfpx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dfdx}[2]{\frac{d #1}{d #2}}
+\newcommand{\ldnorm}[1]{\| #1 \|^2_{\mbox{\footnotesize \sf D}} }
+\newcommand{\spc}[1]{\mbox{\sf #1}}
+\newcommand{\ope}[1]{\cal #1}
+\newcommand{\mt}[1]{{\rm #1}}
+\newcommand{\innerd}[2]{\left( #1,#2 \right)_{\mbox{\footnotesize \sf D}}}
+\newcommand{\inners}[2]{\left( #1,#2 \right)_{\mbox{\footnotesize ${\delta}$\sf D}}}
+\newcommand{\summ}[2]{\displaystyle \sum_{i=0}^{#1}\sum_{j=0}^{#2}}
+\newcommand{\sqrend}{\begin{flushright}$\square$\end{flushright}}
+\newcommand{\pfend}{\begin{flushright}$\square$\end{flushright}}
+\newcommand{\pf}{\emph{Proof. }}
+\newcommand{\R}[2]{R_#1^{(#2)}}
+\renewcommand{\baselinestretch}{1}
+%---- END NEW COMMANDS
+\begin{document}
+
+\frame{\titlepage}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+\section{計劃目的}
+
+\begin{frame}{計劃目的}
+\begin{itemize}
+\item 動機:
+
+\item 計劃目的:
+
+本計劃目的在研究Henon-Heiles模型解的行為隨著參數及初始條件變動的情形.
+
+\end{itemize}
+\end{frame}
+\section{計劃內容}
+\begin{frame}{Model Equations}
+
+Henon-Heiles模型如下
+\begin{align*}
+\frac{d}{dt}y_1&=y_2\\
+\frac{d}{dt}y_2&=-y_1-2 y_1 y_3\\
+\frac{d}{dt}y_3&=y_4\\
+\frac{d}{dt}y_4&=-y_3-y_1^2+y_3^2
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{Analysis}
+
+由Henon-Heiles模型可得以下方程
+$$\frac{1}{2}(y_1^2+y_2^2+y_3^2+y_4^2)+y_1^2y_3-\frac{1}{3} y_3^3=h$$
+數值模擬程序:
+\begin{enumerate}
+\item 先決定$h$值, 考慮適當$y_1$,$y_3$,$y_4$初始值,
+再由上式得到$y_2$初始值.
+\item 以ode45得到前一頁Henon-Heiles模型數值解
+\item 選取恰當的Poincare section得到Poincare map
+\end{enumerate}
+\end{frame}
+\section{初步結果}
+\begin{frame}{$h=0.13$, $y_1=y_3=0$, $y_4=0.215$}
+
+\includegraphics[width=\textwidth]{./scicomp/islands2.png}
+\end{frame}
+
+\begin{frame}{$h=0.13$, $y_1=y_3=0$, $y_4=0.225$}
+
+\includegraphics[width=\textwidth]{./scicomp/circles.png}
+
+\end{frame}
+\begin{frame}{$h=0.13$, $y_1=y_3=0$, $y_4=0.18$}
+
+\includegraphics[width=\textwidth]{./scicomp/chaos.png}
+
+\end{frame}
+
+\section{計劃規劃}
+\begin{frame}{計劃規劃}
+\begin{itemize}
+\item 規劃:
+\begin{enumerate}
+\item
+\end{enumerate}
+\item 任務分配:
+\begin{itemize}
+\item 資料搜集: 組員A
+\item 理論推導: 組員C
+\item 程式撰寫: 組員D
+\item 成果整理: 組員B, 組員E
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{參考資料}
+\begin{frame}{參考資料}
+\begin{itemize}
+\item Computer modeling: from sports to spaceflight ... from order to
+chaos. by Danby, J. M. A.
+\end{itemize}
+
+\end{frame}
+\end{document}

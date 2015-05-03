@@ -1,0 +1,5 @@
+function dydt = mycoupled(t,y,w02,N)
+
+dydt(1:N)=y(N+1:2*N);
+dydt(N+2:2*N-1)=w02*(y(N+1:2*N-2)-2*y(N+2:2*N-1)+y(N+2:2*N));
+dydt(N+1)=w02*(-2*y(N+2:2*N-1)+y(N+2:2*N));

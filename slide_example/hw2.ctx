@@ -1,0 +1,99 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{amssymb,amsmath}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{international}
+\textwidth 7.0in \textheight 10.0in \oddsidemargin -0.3in
+
+\topmargin -1in
+
+\pagestyle{empty}
+\begin{document}
+\begin{center}
+%\begin{LARGE}
+Introduction to Scientific Computing\\
+科學計算導論\\
+Homework 2 (Due: June 4, 2009)-Rev 2\\
+%\end{LARGE}
+
+\end{center}
+%\vspace{1in}
+\begin{enumerate}
+\item 考慮一耦合的簡諧震盪系統(http://en.wikipedia.org/wiki/Normal\_mode),
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/Coupled_Harmonic_Oscillator.eps}
+\end{center}
+\caption{Coupled Harmonic Oscillator from wiki}
+\end{figure}
+假設$x_1(t)$,$x_2(t)$分別為$m_1$及$m_2$的位移,
+三個彈簧的彈性係數皆為$k$且$m_1=m_2=m$.
+則我們可以用下列方程組描述整個系統的行為:
+
+\begin{align}\label{ivp}
+\frac{d^2}{dt^2} x_1 &= -\frac{k}{m} x_1+\frac{k}{m} (x_2-x_1),\\
+\frac{d^2}{dt^2} x_2 &= -\frac{k}{m} x_2+\frac{k}{m} (x_1-x_2), \notag\\
+x_1(0)&= x_{10},\quad
+x_2(0)= x_{20},\notag \\
+x_1'(0)&=v_{10}, \quad x_2'(0)=v_{20}, \notag
+\end{align}
+
+%Note: $\omega_0$ 及 $T$ 為常數. 請選擇恰當的數值
+
+%該初始值問題的正解(exact solution)如下
+%
+%$$x_{exac}(t)= \frac{v_0}{\omega_0} \sin{\omega_0 t}+ x_0 \cos{\omega_0 t}.$$
+
+請寫出一個Matlab的程式以內建的ode45 得到
+(\ref{ivp})的數值解(numerical solution):
+
+\begin{enumerate}
+%\item 將數值解 $x_1$, $x_2$)對時間作圖(畫在同一張圖同時以不同種線表示)
+\item 這個系統有兩個normal modes, 找出這兩個normal modes的共振頻率.
+\item 選取適當的初始條件, 分別產生這兩個normal modes.
+檢查數值計算的結果是否與理論推導結果相近.
+\item 討論$k/m=1$, $k/m=4$兩系統間的關係. 分別選取恰當的初始條件,
+將數值解畫在適當的框架中比較.
+或是經過適當的座標變換將兩系統解畫在一起比較.
+\item Question: 對任意初始條件, 本系統的解是否為週期解? Why?
+%\item the predictor-corrector" trapezoidal rule .
+\end{enumerate}
+
+%結果:
+%\begin{enumerate}
+%\item 數值解($x_h$)與正解($x_{exac}$)對時間作圖:
+%\item 誤差:
+%\item 討論:
+%討論一下這個小題你有什麼看法. 比方說誤差很大還是很小,
+%數值解和正解差很多嗎? 等等
+
+%\end{enumerate}
+%\newpage
+\item 考慮一生物數學模型
+
+\begin{align*}
+\frac{d}{dt} x &= x-0.1x^2-\frac{xy}{1+x},\\
+\frac{d}{dt} y &= \frac{1}{6}y (1.2-\frac{y}{x}),\\
+x(0)&= x_0,\notag \\
+y(0)&=y_0. \notag
+\end{align*}
+請寫出一個Matlab的程式以內建的ode45 得到 數值解(numerical solution):
+
+\begin{enumerate}
+\item 本系統有三個平衡點, 其中一個落在左半平面, 兩個落在右半平面.
+找出這三個平衡點及其線性穩定性並與數值計算結果比較.
+\item 這個系統存在一個Limit
+cycle(http://en.wikipedia.org/wiki/Limit\_cycle).
+選取數個不同的初始條件, 將數值解的$y$對$x$作圖(Phase portrait),
+可以看到這些數值解收斂到limit cycle的情形
+\item 選取適當的初始條件, 使系統的解會收斂至limit cycle, 將數值解
+$x(t)$, $y(t)$對時間$t$作圖. 是否有看到週期性?
+\item (bonus) 試以Poincar\'{e}-Bendixson theorem說明limit
+cycle的存在性. \\
+(http://en.wikipedia.org/wiki/Poincar\'{e}-Bendixson\_theorem)
+\end{enumerate}
+
+%\end{enumerate}
+\end{enumerate}
+\end{document}

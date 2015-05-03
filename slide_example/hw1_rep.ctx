@@ -1,0 +1,186 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amssymb,amsmath}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\textwidth 7.0in \textheight 9.0in \oddsidemargin -0.3in \topmargin
+-.1in \pagestyle{empty}
+\begin{document}
+\begin{center}
+\begin{LARGE}
+Introduction to Scientific Computing\\
+科學計算導論\\
+Homework 1\\
+\end{LARGE}
+%% 說明 只要把 --Top--- 和 --Bottom--- 間的內容改成你的結果即可
+
+%%-------------------------Top------------------------------%%
+你的姓名\\
+你的學號
+%%-----------------------Bottom-----------------------------%%
+\end{center}
+%\vspace{1in}
+\begin{enumerate}
+\item 考慮一初始值問題 (Initial Value Problem)
+
+\begin{align}\label{ivp}
+\frac{d^2}{dt^2} x &= -\omega_0^2 x,  \quad 0 < t < T,\\
+x(0)&= x_0,\notag \\
+x'(0)&=v_0, \notag
+\end{align}
+
+Note: $\omega_0$ 及 $T$ 為常數. 請選擇恰當的數值
+
+該初始值問題的正解(exact solution)如下
+
+$$x_{exac}(t)= \frac{v_0}{\omega_0} \sin{\omega_0 t}+ x_0 \cos{\omega_0 t}.$$
+
+請寫出一個Matlab的程式以內建的ode45 得到
+(\ref{ivp})的數值解(numerical solution):
+
+\begin{enumerate}
+\item 將數值解($x_h$)與正解($x_{exac}$)對時間作圖(畫在同一張圖同時以不同種線表示)
+\item 使用legend功能, 標示正解與數值解
+\item 量測數值解($x_h$)的誤差 $|x_h(T)-x_{exac}(T)|$
+\item Question: 有辦法調整ode45的參數使誤差變小嗎?
+%\item the predictor-corrector" trapezoidal rule .
+\end{enumerate}
+結果:
+\begin{enumerate}
+\item 數值解($x_h$)與正解($x_{exac}$)對時間作圖:
+
+%%-------------------------Top------------------------------%%
+% 以0312.zip中的程式執行後得到的圖來說明如何將圖放入報告中:
+% 1. 首先在本檔案的目錄中開新子目錄取名為 scicomp
+% 2. 將程式產生的eps檔(我的檔名為y.eps)放入該目錄
+% 3. 依照以下的格式將圖加入報告中(將y.eps改為你的圖檔檔名即可)
+% 4. caption後的大括弧中是圖的標題
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\end{center}
+\caption{數值解($x_h$)與正解($x_{exac}$)對時間作圖}
+\end{figure}
+% 如果想把兩張圖併排的話:
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\end{center}
+\caption{兩張圖併排}
+\end{figure}
+在此說明這些圖的意義同時說明使用的初始值.
+%%-----------------------Bottom-----------------------------%%
+
+\item 誤差 (取三個或更多不同的初始值量測誤差):
+
+%%-------------------------Top------------------------------%%
+% 這部份我們以表格的方式呈現誤差
+% 將底下 XA 改成 你的初始位置 x0, VA 改成初始速度 v0, EA改為程式計算出來的誤差即可
+\begin{tabular}{|c|c|c|}
+\hline
+$x_0$ & $v_0$& 誤差 \\
+\hline XA & VA & EA \\
+\hline XA & VA & EA \\
+\hline XA & VA & EA \\
+\hline
+\end{tabular}\\
+
+%%-----------------------Bottom-----------------------------%%
+
+\item 討論:
+
+%%-------------------------Top------------------------------%%
+討論一下這個小題你有什麼看法. 比方說誤差很大還是很小,
+數值解和正解差很多嗎? 等等
+%%-----------------------Bottom-----------------------------%%
+
+\end{enumerate}
+\newpage
+\item考慮一非線性初始值問題 (Initial Value Problem)
+
+\begin{align}\label{ivp2}
+\frac{d^2}{dt^2} x &= -\omega_0^2 \sin{x},  \quad 0 < t < T,\\
+x(0)&= x_0,\notag \\
+x'(0)&=v_0. \notag
+\end{align}
+
+Note: $\omega_0$ 及 $T$ 為常數. 請選擇與題一相同的常數
+
+請將第一題的程式修改對本非線性初始值問題求解.
+\begin{enumerate}
+\item 將第一題與本題的數值解畫在同一張圖上. 改變初始條件(選取三個不同的初始條件),
+觀察兩個問題的差異.
+\item Question: 本題的解具有週期性嗎? 如何看出
+\end{enumerate}
+結果:
+\begin{enumerate}
+
+\item 彈簧伸長量($x_{spring}$)與單擺夾角($x_{pendulum}$)對時間作圖:
+
+%%-------------------------Top------------------------------%%
+% 把圖加入報告的作法和前一題類似
+% 如果想把三張圖併排的話:
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\includegraphics[width=0.3\textwidth]{./scicomp/y.eps}
+\end{center}
+\caption{三張圖併排}
+\end{figure}
+
+在此說明這些圖的意義同時說明使用的初始值.
+
+%%-----------------------Bottom-----------------------------%%
+
+
+\item 討論:
+
+%%-------------------------Top------------------------------%%
+討論一下這個小題你有什麼看法. 比方說這兩個方程解的差異;
+當初始條件y0很小時, 兩個解相差多少, 還有 y0很大時兩個解相差多少
+%%-----------------------Bottom-----------------------------%%
+
+\end{enumerate}
+\newpage
+\item Phase Portraits
+\begin{enumerate}
+\item 修改第一題的程式, 將$x'(t)$對$x(t)$作圖 (選取五個不同的初始條件且在同一張圖上畫出).
+\item 修改第二題的程式, 將$x'(t)$對$x(t)$作圖 (選取五個不同的初始條件且在同一張圖上畫出).
+\item 比較兩題的Phase Portraits
+\end{enumerate}
+結果:
+\begin{enumerate}
+\item Mass-Spring system:
+%%-------------------------Top------------------------------%%
+% 將phase.eps 改為你的圖檔檔名
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/phase.eps}
+\end{center}
+\caption{Phase Portrait - spring}
+\end{figure}
+
+%%-----------------------Bottom-----------------------------%%
+
+\item Pendulum:
+
+%%-------------------------Top------------------------------%%
+% 將phase.eps 改為你的圖檔檔名
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{./scicomp/phase.eps}
+\end{center}
+\caption{Phase Portrait - pendulum}
+\end{figure}
+%%-----------------------Bottom-----------------------------%%
+
+\item 討論:
+%%-------------------------Top------------------------------%%
+
+討論兩個phase portraits的不同
+
+%%-----------------------Bottom-----------------------------%%
+\end{enumerate}
+\end{enumerate}
+\end{document}
